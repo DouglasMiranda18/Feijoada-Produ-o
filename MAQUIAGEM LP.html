@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alana Menezes | Maquiadora Profissional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lilac: {
+                            light: '#E6D7F2',
+                            DEFAULT: '#D8BFE6',
+                            dark: '#C9A7DA'
+                        },
+                        purple: {
+                            light: '#9F7ABA',
+                            DEFAULT: '#8A56AC',
+                            dark: '#6A4383'
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #FBF8FF;
+        }
+        
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d8bfe6' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(138, 86, 172, 0.3);
+        }
+        
+        .gallery-img {
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-img:hover {
+            transform: scale(1.03);
+        }
+        
+        .btn-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(138, 86, 172, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(138, 86, 172, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(138, 86, 172, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <header class="bg-lilac-dark sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <nav class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="text-purple-dark font-serif text-2xl font-bold">Alana<span class="text-white">Menezes</span></div>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-purple-dark font-medium transition duration-300">Home</a>
+                    <a href="#services" class="text-white hover:text-purple-dark font-medium transition duration-300">Serviços</a>
+                    <a href="#portfolio" class="text-white hover:text-purple-dark font-medium transition duration-300">Portfólio</a>
+                    <a href="#about" class="text-white hover:text-purple-dark font-medium transition duration-300">Sobre</a>
+                    <a href="#contact" class="text-white hover:text-purple-dark font-medium transition duration-300">Contato</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+            <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2">
+                <a href="#home" class="block py-2 text-white hover:text-purple-dark">Home</a>
+                <a href="#services" class="block py-2 text-white hover:text-purple-dark">Serviços</a>
+                <a href="#portfolio" class="block py-2 text-white hover:text-purple-dark">Portfólio</a>
+                <a href="#about" class="block py-2 text-white hover:text-purple-dark">Sobre</a>
+                <a href="#contact" class="block py-2 text-white hover:text-purple-dark">Contato</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-pattern bg-lilac-light py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-purple-dark mb-6">Transforme sua beleza com maquiagem profissional</h1>
+                    <p class="text-lg text-gray-700 mb-8">Especialista em maquiagem para eventos, casamentos, ensaios fotográficos e muito mais. Realce sua beleza natural com técnicas exclusivas.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact" class="btn-pulse inline-block bg-purple text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-purple-dark transition duration-300 text-center">Faça seu Orçamento</a>
+                        <a href="#portfolio" class="inline-block bg-white text-purple border-2 border-purple font-bold py-3 px-8 rounded-full hover:bg-lilac-light transition duration-300 text-center">Ver Portfólio</a>
+                    </div>
+                </div>
+               <div class="md:w-1/2 flex justify-center">
+        <img src="Design sem nome (3).png" alt="Makeup Artist" class="w-full h-full object-cover">
+    </div>
+</div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-purple-dark mb-4">Nossos Serviços</h2>
+                <div class="w-24 h-1 bg-lilac-dark mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Oferecemos uma variedade de serviços de maquiagem profissional para realçar sua beleza natural e fazer você se sentir incrível em qualquer ocasião.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white rounded-lg shadow-lg p-8 border-t-4 border-lilac-dark transition duration-300">
+                    <div class="bg-lilac-light w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-8 h-8 text-purple-dark" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-purple-dark text-center mb-4">Maquiagem para Noivas</h3>
+                    <p class="text-gray-600 text-center mb-6">Maquiagem especial para o seu grande dia, com produtos de alta durabilidade e técnicas que valorizam sua beleza nas fotos e ao vivo.</p>
+                    <ul class="text-gray-600 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-purple mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Prova de maquiagem
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-purple mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Produtos premium
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-purple mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Alta durabilidade
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white rounded-lg shadow-lg p-8 border-t-4 border-lilac-dark transition duration-300">
+                    <div class="bg-lilac-light w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-8 h-8 text-purple-dark" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-purple-dark text-center mb-4">Maquiagem para Festas</h3>
+                    <p class="text-gray-600 text-center mb-6">Maquiagens elaboradas para formaturas, aniversários, festas e eventos especiais que destacam sua beleza.</p>
+                    <ul class="text-gray-600 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-purple mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Looks personalizados
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-purple mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Técnicas modernas
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-purple mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Atendimento no local
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white rounded-lg shadow-lg p-8 border-t-4 border-lilac-dark transition duration-300">
+                    <div class="bg-lilac-light w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-8 h-8 text-purple-dark" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-purple-dark text-center mb-4">Maquiagem para Ensaios</h3>
+                    <p class="text-gray-600 text-center mb-6">Maquiagem especial para ensaios fotográficos, com técnicas que valorizam seus traços nas câmeras.</p>
+                    <ul class="text-gray-600 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-purple mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Técnicas fotogênicas
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-purple mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Adaptação ao tema
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 text-purple mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Parceria com fotógrafos
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#contact" class="inline-block bg-purple text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-purple-dark transition duration-300">Solicitar Serviço</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-lilac-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-purple-dark mb-4">Portfólio</h2>
+                <div class="w-24 h-1 bg-lilac-dark mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Conheça alguns dos meus trabalhos realizados em diferentes ocasiões e estilos de maquiagem.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Portfolio Item 1 -->
+                <div class="gallery-img overflow-hidden rounded-lg shadow-lg transition duration-300">
+    <div class="relative pb-[100%] bg-purple-light">
+        <img src="OIP (10).jpeg" alt="Maquiagem para Noiva" class="absolute inset-0 w-full h-full object-cover rounded-lg">
+    </div>
+    <div class="p-4 bg-white">
+        <h3 class="font-serif font-bold text-purple-dark">Maquiagem para Noiva</h3>
+        <p class="text-gray-600 text-sm">Técnica de longa duração com acabamento natural</p>
+    </div>
+</div>
+
+                
+               <!-- Maquiagem para Festa -->
+<div class="gallery-img overflow-hidden rounded-lg shadow-lg transition duration-300">
+    <div class="relative pb-[100%] bg-purple-light">
+        <img src="OIP (10).jpeg" alt="Maquiagem para Festa" class="absolute inset-0 w-full h-full object-cover rounded-lg">
+    </div>
+    <div class="p-4 bg-white">
+        <h3 class="font-serif font-bold text-purple-dark">Maquiagem para Festa</h3>
+        <p class="text-gray-600 text-sm">Look glamouroso para eventos noturnos</p>
+    </div>
+</div>
+
+<!-- Maquiagem Editorial -->
+<div class="gallery-img overflow-hidden rounded-lg shadow-lg transition duration-300">
+    <div class="relative pb-[100%] bg-purple-light">
+        <img src="OIP (10).jpeg" alt="Maquiagem Editorial" class="absolute inset-0 w-full h-full object-cover rounded-lg">
+    </div>
+    <div class="p-4 bg-white">
+        <h3 class="font-serif font-bold text-purple-dark">Maquiagem Editorial</h3>
+        <p class="text-gray-600 text-sm">Criação artística para ensaios fotográficos</p>
+    </div>
+</div>
+
+<!-- Maquiagem para Formatura -->
+<div class="gallery-img overflow-hidden rounded-lg shadow-lg transition duration-300">
+    <div class="relative pb-[100%] bg-purple-light">
+        <img src="OIP (10).jpeg" alt="Maquiagem para Formatura" class="absolute inset-0 w-full h-full object-cover rounded-lg">
+    </div>
+    <div class="p-4 bg-white">
+        <h3 class="font-serif font-bold text-purple-dark">Maquiagem para Formatura</h3>
+        <p class="text-gray-600 text-sm">Look elegante para cerimônias especiais</p>
+    </div>
+</div>
+
+<!-- Maquiagem para Debutante -->
+<div class="gallery-img overflow-hidden rounded-lg shadow-lg transition duration-300">
+    <div class="relative pb-[100%] bg-purple-light">
+        <img src="OIP (10).jpeg" alt="Maquiagem para Debutante" class="absolute inset-0 w-full h-full object-cover rounded-lg">
+    </div>
+    <div class="p-4 bg-white">
+        <h3 class="font-serif font-bold text-purple-dark">Maquiagem para Debutante</h3>
+        <p class="text-gray-600 text-sm">Look jovem e sofisticado para festa de 15 anos</p>
+    </div>
+</div>
+
+<!-- Maquiagem para Ensaio -->
+<div class="gallery-img overflow-hidden rounded-lg shadow-lg transition duration-300">
+    <div class="relative pb-[100%] bg-purple-light">
+        <img src="OIP (10).jpeg" alt="Maquiagem para Ensaio" class="absolute inset-0 w-full h-full object-cover rounded-lg">
+    </div>
+    <div class="p-4 bg-white">
+        <h3 class="font-serif font-bold text-purple-dark">Maquiagem para Ensaio</h3>
+        <p class="text-gray-600 text-sm">Look natural para ensaios externos</p>
+    </div>
+</div>
+
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="relative ">
+                       <img src="Design sem nome (4).png" alt="Maquiadora profissional" class="w-full h-full object-cover">
+
+                    </div>
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-purple-dark mb-6">Sobre Mim</h2>
+                    <div class="w-24 h-1 bg-lilac-dark mb-6"></div>
+                    <p class="text-gray-600 mb-6">Olá! Sou uma maquiadora profissional apaixonada por realçar a beleza natural de cada pessoa. Com mais de 5 anos de experiência no mercado, me especializei em maquiagens para eventos, casamentos e ensaios fotográficos.</p>
+                    <p class="text-gray-600 mb-6">Meu trabalho é focado em valorizar os traços naturais de cada cliente, criando looks personalizados que combinam com sua personalidade e ocasião. Utilizo produtos de alta qualidade e técnicas modernas para garantir resultados impecáveis e duradouros.</p>
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <div class="bg-lilac-light rounded-full py-2 px-4 text-purple-dark font-medium">Certificação Internacional</div>
+                        <div class="bg-lilac-light rounded-full py-2 px-4 text-purple-dark font-medium">Produtos Premium</div>
+                        <div class="bg-lilac-light rounded-full py-2 px-4 text-purple-dark font-medium">Técnicas Avançadas</div>
+                    </div>
+                    <a href="#contact" class="inline-block bg-purple text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-purple-dark transition duration-300">Entre em Contato</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-lilac-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-purple-dark mb-4">Depoimentos</h2>
+                <div class="w-24 h-1 bg-lilac-dark mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Veja o que minhas clientes dizem sobre meu trabalho.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-8 relative">
+                    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-lilac-dark text-white w-10 h-10 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div class="text-gray-600 italic mb-6 pt-4">"Fiquei encantada com minha maquiagem de noiva! Durou o dia todo, mesmo com lágrimas e calor. As fotos ficaram perfeitas e me senti linda durante toda a cerimônia."</div>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-purple-light rounded-full flex items-center justify-center text-white font-bold text-xl">C</div>
+                        <div class="ml-4">
+                            <div class="font-bold text-purple-dark">Carolina Silva</div>
+                            <div class="text-gray-500 text-sm">Noiva</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-8 relative">
+                    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-lilac-dark text-white w-10 h-10 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div class="text-gray-600 italic mb-6 pt-4">"Contratei para minha formatura e o resultado superou minhas expectativas! A maquiagem realçou meus traços de forma natural e elegante. Todos elogiaram muito!"</div>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-purple-light rounded-full flex items-center justify-center text-white font-bold text-xl">M</div>
+                        <div class="ml-4">
+                            <div class="font-bold text-purple-dark">Mariana Costa</div>
+                            <div class="text-gray-500 text-sm">Formanda</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-lg shadow-lg p-8 relative">
+                    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-lilac-dark text-white w-10 h-10 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div class="text-gray-600 italic mb-6 pt-4">"Fiz um ensaio fotográfico e a maquiagem ficou incrível nas fotos! Profissional atenciosa que entendeu exatamente o que eu queria. Super recomendo!"</div>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-purple-light rounded-full flex items-center justify-center text-white font-bold text-xl">J</div>
+                        <div class="ml-4">
+                            <div class="font-bold text-purple-dark">Juliana Mendes</div>
+                            <div class="text-gray-500 text-sm">Modelo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-purple-dark mb-4">Entre em Contato</h2>
+                <div class="w-24 h-1 bg-lilac-dark mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Solicite um orçamento ou tire suas dúvidas. Estou à disposição para atender você!</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Nome</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lilac-dark" placeholder="Seu nome completo">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lilac-dark" placeholder="seu.email@exemplo.com">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Telefone</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lilac-dark" placeholder="(00) 00000-0000">
+                        </div>
+                        <div>
+                            <label for="service" class="block text-gray-700 font-medium mb-2">Serviço de Interesse</label>
+                            <select id="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lilac-dark">
+                                <option value="">Selecione um serviço</option>
+                                <option value="noiva">Maquiagem para Noiva</option>
+                                <option value="festa">Maquiagem para Festa</option>
+                                <option value="ensaio">Maquiagem para Ensaio</option>
+                                <option value="curso">Curso de Automaquiagem</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Mensagem</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lilac-dark" placeholder="Descreva o que você precisa..."></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn-pulse w-full bg-purple text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-purple-dark transition duration-300">Enviar Mensagem</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-lilac-light p-8 rounded-lg shadow-lg h-full">
+                        <h3 class="text-2xl font-serif font-bold text-purple-dark mb-6">Informações de Contato</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-white w-12 h-12 rounded-full flex items-center justify-center text-purple-dark mr-4 shadow-md">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-purple-dark">Endereço</h4>
+                                    <p class="text-gray-600">Rua das Flores, 123 - Centro<br>São Paulo - SP</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white w-12 h-12 rounded-full flex items-center justify-center text-purple-dark mr-4 shadow-md">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-purple-dark">Telefone</h4>
+                                    <p class="text-gray-600">(11) 99999-9999</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white w-12 h-12 rounded-full flex items-center justify-center text-purple-dark mr-4 shadow-md">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-purple-dark">Email</h4>
+                                    <p class="text-gray-600">contato@beautypro.com.br</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white w-12 h-12 rounded-full flex items-center justify-center text-purple-dark mr-4 shadow-md">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-purple-dark">Horário de Atendimento</h4>
+                                    <p class="text-gray-600">Segunda a Sábado: 9h às 19h<br>Domingos e Feriados: Mediante agendamento</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-purple-dark mb-4">Redes Sociais</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-purple hover:bg-purple hover:text-white transition duration-300 shadow-md">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-purple hover:bg-purple hover:text-white transition duration-300 shadow-md">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-purple hover:bg-purple hover:text-white transition duration-300 shadow-md">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                                <a href="#" class="bg-white w-10 h-10 rounded-full flex items-center justify-center text-purple hover:bg-purple hover:text-white transition duration-300 shadow-md">
+                                    <i class="fab fa-tiktok"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-purple-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="text-2xl font-serif font-bold mb-4">Alana<span class="text-lilac-light">Menezes</span></div>
+                    <p class="text-gray-300 max-w-xs">Transformando sua beleza com técnicas exclusivas de maquiagem profissional.</p>
+                </div>
+                
+                <div class="mb-8 md:mb-0">
+                    <h4 class="text-lg font-bold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-300 hover:text-lilac-light transition duration-300">Home</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-lilac-light transition duration-300">Serviços</a></li>
+                        <li><a href="#portfolio" class="text-gray-300 hover:text-lilac-light transition duration-300">Portfólio</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-lilac-light transition duration-300">Sobre</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-lilac-light transition duration-300">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="mb-8 md:mb-0">
+                    <h4 class="text-lg font-bold mb-4">Serviços</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-lilac-light transition duration-300">Maquiagem para Noivas</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-lilac-light transition duration-300">Maquiagem para Festas</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-lilac-light transition duration-300">Maquiagem para Ensaios</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-lilac-light transition duration-300">Cursos de Automaquiagem</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Newsletter</h4>
+                    <p class="text-gray-300 mb-4">Receba dicas e novidades sobre maquiagem.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Seu email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+                        <button type="submit" class="bg-lilac-dark text-white px-4 py-2 rounded-r-lg hover:bg-lilac transition duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2025 AlanaMenezes. Todos os direitos reservados.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-lilac-light transition duration-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-lilac-light transition duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-lilac-light transition duration-300">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-lilac-light transition duration-300">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (!name || !email || !phone || !service || !message) {
+                alert('Por favor, preencha todos os campos do formulário.');
+                return;
+            }
+            
+            // In a real application, you would send this data to a server
+            // For this demo, we'll just show a success message
+            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>

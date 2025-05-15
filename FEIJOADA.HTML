@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feijoada da Dayse - Cardápio Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Configuração do Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        marrom: '#3e2214',
+                        caramelo: '#d58940',
+                        vermelho: '#ae3f33',
+                        bordo: '#5c1d20',
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Estilos CSS -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fffaf5;
+        }
+        
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d58940' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .menu-item {
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .admin-panel {
+            display: none;
+        }
+        
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ae3f33;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .cart-item-enter {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        
+        .cart-item-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 300ms, transform 300ms;
+        }
+        
+        .cart-item-exit {
+            opacity: 1;
+        }
+        
+        .cart-item-exit-active {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 300ms, transform 300ms;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="bg-marrom text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12,2C6.48,2,2,6.48,2,12c0,5.52,4.48,10,10,10s10-4.48,10-10C22,6.48,17.52,2,12,2z M12,20c-4.41,0-8-3.59-8-8 c0-4.41,3.59-8,8-8s8,3.59,8,8C20,16.41,16.41,20,12,20z M11,9.5h2v7h-2V9.5z M11,7.5h2v2h-2V7.5z"/>
+                </svg>
+                <span class="font-serif text-xl font-bold">Feijoada da Dayse</span>
+            </div>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#inicio" class="hover:text-caramelo transition-colors">Início</a>
+                <a href="#cardapio" class="hover:text-caramelo transition-colors">Cardápio</a>
+                <a href="#sobre" class="hover:text-caramelo transition-colors">Sobre</a>
+                <a href="#contato" class="hover:text-caramelo transition-colors">Contato</a>
+                <button id="cart-btn" class="relative mr-4">
+                    <i class="fas fa-shopping-cart text-xl hover:text-caramelo transition-colors"></i>
+                    <span id="cart-badge" class="cart-badge">0</span>
+                </button>
+                <button id="admin-btn" class="bg-caramelo hover:bg-vermelho text-white px-4 py-2 rounded-full transition-colors">
+                    <i class="fas fa-user-lock mr-1"></i> Admin
+                </button>
+            </div>
+            <div class="md:hidden flex items-center">
+                <button id="cart-btn-mobile" class="relative mr-4">
+                    <i class="fas fa-shopping-cart text-xl hover:text-caramelo transition-colors"></i>
+                    <span id="cart-badge-mobile" class="cart-badge">0</span>
+                </button>
+                <button id="mobile-menu-btn" class="text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-marrom pb-4 px-4">
+            <a href="#inicio" class="block py-2 hover:text-caramelo transition-colors">Início</a>
+            <a href="#cardapio" class="block py-2 hover:text-caramelo transition-colors">Cardápio</a>
+            <a href="#sobre" class="block py-2 hover:text-caramelo transition-colors">Sobre</a>
+            <a href="#contato" class="block py-2 hover:text-caramelo transition-colors">Contato</a>
+            <button id="admin-btn-mobile" class="mt-2 bg-caramelo hover:bg-vermelho text-white px-4 py-2 rounded-full transition-colors w-full">
+                <i class="fas fa-user-lock mr-1"></i> Admin
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-pattern bg-caramelo bg-opacity-10 py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-serif font-bold text-marrom mb-4">Feijoada da Dayse</h1>
+                    <p class="text-lg md:text-xl text-bordo mb-6">A melhor feijoada da cidade, feita com ingredientes selecionados e muito amor.</p>
+                    <div class="flex space-x-4">
+                        <a href="#cardapio" class="bg-vermelho hover:bg-bordo text-white px-6 py-3 rounded-full transition-colors font-medium">
+                            Ver Cardápio
+                        </a>
+                        <button id="fazer-pedido-btn" class="bg-marrom hover:bg-bordo text-white px-6 py-3 rounded-full transition-colors font-medium">
+                            Fazer Pedido
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-72 h-72 md:w-96 md:h-96">
+                        <svg class="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#d58940" d="M45.7,-51.8C59.9,-41.3,72.5,-28.1,76.4,-12.4C80.3,3.3,75.5,21.5,65.5,35.4C55.5,49.3,40.3,58.9,23.8,65.2C7.3,71.5,-10.5,74.5,-26.9,69.9C-43.3,65.3,-58.3,53.1,-67.1,37.2C-75.9,21.3,-78.5,1.7,-74.2,-15.8C-69.9,-33.3,-58.7,-48.7,-44.5,-59.2C-30.3,-69.7,-13.1,-75.3,1.2,-76.7C15.5,-78.1,31.5,-62.3,45.7,-51.8Z" transform="translate(100 100)" />
+                            <text x="100" y="115" text-anchor="middle" font-family="Playfair Display, serif" font-size="24" fill="#3e2214" font-weight="bold">Feijoada</text>
+                            <text x="100" y="145" text-anchor="middle" font-family="Playfair Display, serif" font-size="18" fill="#3e2214">da Dayse</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cardápio Section -->
+    <section id="cardapio" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-marrom mb-2">Nosso Cardápio</h2>
+                <p class="text-bordo">Confira nossas deliciosas opções</p>
+                <div class="w-24 h-1 bg-caramelo mx-auto mt-4"></div>
+            </div>
+            
+            <div class="flex flex-wrap justify-center mb-8">
+                <button class="categoria-btn bg-marrom text-white px-4 py-2 rounded-full m-2 active" data-categoria="todos">Todos</button>
+                <button class="categoria-btn bg-bordo text-white px-4 py-2 rounded-full m-2" data-categoria="feijoadas">Feijoadas</button>
+                <button class="categoria-btn bg-bordo text-white px-4 py-2 rounded-full m-2" data-categoria="acompanhamentos">Acompanhamentos</button>
+                <button class="categoria-btn bg-bordo text-white px-4 py-2 rounded-full m-2" data-categoria="bebidas">Bebidas</button>
+                <button class="categoria-btn bg-bordo text-white px-4 py-2 rounded-full m-2" data-categoria="sobremesas">Sobremesas</button>
+            </div>
+            
+            <div id="menu-items" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Os itens do cardápio serão inseridos aqui dinamicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="py-16 bg-caramelo bg-opacity-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <div class="relative w-full h-64 md:h-96 overflow-hidden rounded-lg shadow-xl">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                            <rect width="200" height="200" fill="#5c1d20" />
+                            <circle cx="100" cy="80" r="40" fill="#d58940" />
+                            <rect x="60" y="120" width="80" height="60" fill="#ae3f33" />
+                            <circle cx="80" cy="140" r="10" fill="#3e2214" />
+                            <circle cx="120" cy="140" r="10" fill="#3e2214" />
+                            <path d="M70,160 Q100,180 130,160" stroke="#3e2214" stroke-width="4" fill="none" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-marrom mb-6">Sobre a Feijoada da Dayse</h2>
+                    <p class="text-bordo mb-4">
+                        Há mais de 15 anos, a Feijoada da Dayse vem conquistando paladares com sua receita tradicional e ingredientes selecionados.
+                    </p>
+                    <p class="text-bordo mb-4">
+                        Nossa feijoada é preparada com carinho e dedicação, seguindo a receita de família que foi passada por gerações. Utilizamos apenas ingredientes frescos e de alta qualidade.
+                    </p>
+                    <p class="text-bordo mb-6">
+                        Além da feijoada tradicional, oferecemos diversas opções para todos os gostos, incluindo versões vegetarianas e acompanhamentos variados.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#contato" class="bg-vermelho hover:bg-bordo text-white px-6 py-3 rounded-full transition-colors font-medium">
+                            Entre em Contato
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-marrom mb-2">Entre em Contato</h2>
+                <p class="text-bordo">Estamos à disposição para atendê-lo</p>
+                <div class="w-24 h-1 bg-caramelo mx-auto mt-4"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2 bg-caramelo bg-opacity-10 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-serif font-bold text-marrom mb-4">Informações de Contato</h3>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-vermelho text-white flex items-center justify-center mr-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-bordo">Endereço:</p>
+                            <p>Rua das Delicias, 123 - Centro</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-vermelho text-white flex items-center justify-center mr-3">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-bordo">Telefone:</p>
+                            <p>(11) 99999-9999</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-vermelho text-white flex items-center justify-center mr-3">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-bordo">Email:</p>
+                            <p>contato@feijoadadadayse.com.br</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-vermelho text-white flex items-center justify-center mr-3">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-bordo">Horário de Funcionamento:</p>
+                            <p>Terça a Domingo: 11h às 22h</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 bg-caramelo bg-opacity-10 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-serif font-bold text-marrom mb-4">Envie uma Mensagem</h3>
+                    <form id="contato-form" class="space-y-4">
+                        <div>
+                            <label for="nome-contato" class="block text-bordo mb-1">Nome</label>
+                            <input type="text" id="nome-contato" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo">
+                        </div>
+                        <div>
+                            <label for="email-contato" class="block text-bordo mb-1">Email</label>
+                            <input type="email" id="email-contato" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo">
+                        </div>
+                        <div>
+                            <label for="assunto-contato" class="block text-bordo mb-1">Assunto</label>
+                            <input type="text" id="assunto-contato" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo">
+                        </div>
+                        <div>
+                            <label for="mensagem-contato" class="block text-bordo mb-1">Mensagem</label>
+                            <textarea id="mensagem-contato" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-vermelho hover:bg-bordo text-white px-6 py-3 rounded-full transition-colors font-medium">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-marrom text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,2C6.48,2,2,6.48,2,12c0,5.52,4.48,10,10,10s10-4.48,10-10C22,6.48,17.52,2,12,2z M12,20c-4.41,0-8-3.59-8-8 c0-4.41,3.59-8,8-8s8,3.59,8,8C20,16.41,16.41,20,12,20z M11,9.5h2v7h-2V9.5z M11,7.5h2v2h-2V7.5z"/>
+                        </svg>
+                        <span class="font-serif text-xl font-bold">Feijoada da Dayse</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">A melhor feijoada da cidade, feita com ingredientes selecionados e muito amor.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-caramelo transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-caramelo transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-caramelo transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-lg font-bold mb-4">Links Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#inicio" class="text-gray-300 hover:text-caramelo transition-colors">Início</a></li>
+                        <li><a href="#cardapio" class="text-gray-300 hover:text-caramelo transition-colors">Cardápio</a></li>
+                        <li><a href="#sobre" class="text-gray-300 hover:text-caramelo transition-colors">Sobre</a></li>
+                        <li><a href="#contato" class="text-gray-300 hover:text-caramelo transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Horário de Funcionamento</h3>
+                    <ul class="space-y-2">
+                        <li class="text-gray-300">Segunda: Fechado</li>
+                        <li class="text-gray-300">Terça a Sexta: 11h às 22h</li>
+                        <li class="text-gray-300">Sábado e Domingo: 11h às 23h</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-300">
+                <p>&copy; 2023 Feijoada da Dayse. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Carrinho Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-marrom">Seu Carrinho</h3>
+                <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="cart-items" class="space-y-4 mb-6">
+                <!-- Os itens do carrinho serão inseridos aqui dinamicamente -->
+                <div class="text-center text-gray-500 py-8" id="empty-cart-message">
+                    <i class="fas fa-shopping-cart text-4xl mb-2"></i>
+                    <p>Seu carrinho está vazio</p>
+                    <p class="text-sm">Adicione itens do cardápio para fazer seu pedido</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 pt-4 mb-6">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="font-medium">Subtotal:</span>
+                    <span id="cart-subtotal">R$ 0,00</span>
+                </div>
+                <div class="flex justify-between items-center mb-2">
+                    <span class="font-medium">Taxa de entrega:</span>
+                    <span id="cart-delivery">R$ 5,00</span>
+                </div>
+                <div class="flex justify-between items-center font-bold text-lg">
+                    <span>Total:</span>
+                    <span id="cart-total">R$ 5,00</span>
+                </div>
+            </div>
+            
+            <button id="checkout-btn" class="w-full bg-vermelho hover:bg-bordo text-white px-6 py-3 rounded-full transition-colors font-medium mb-3 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>
+                Finalizar Pedido
+            </button>
+            
+            <button id="continue-shopping" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-3 rounded-full transition-colors font-medium">
+                Continuar Comprando
+            </button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-marrom">Finalizar Pedido</h3>
+                <button id="close-checkout" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="mb-6">
+                <h4 class="font-medium text-bordo mb-2">Resumo do Pedido</h4>
+                <div id="checkout-items" class="border border-gray-200 rounded-md p-3 mb-4 max-h-40 overflow-y-auto">
+                    <!-- Os itens do pedido serão inseridos aqui dinamicamente -->
+                </div>
+                
+                <div class="flex justify-between items-center mb-1">
+                    <span>Subtotal:</span>
+                    <span id="checkout-subtotal">R$ 0,00</span>
+                </div>
+                <div class="flex justify-between items-center mb-1">
+                    <span>Taxa de entrega:</span>
+                    <span id="checkout-delivery">R$ 5,00</span>
+                </div>
+                <div class="flex justify-between items-center font-bold">
+                    <span>Total:</span>
+                    <span id="checkout-total">R$ 5,00</span>
+                </div>
+            </div>
+            
+            <form id="checkout-form" class="space-y-4">
+                <div>
+                    <label for="nome-checkout" class="block text-bordo mb-1">Nome</label>
+                    <input type="text" id="nome-checkout" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo" required>
+                </div>
+                <div>
+                    <label for="telefone-checkout" class="block text-bordo mb-1">Telefone</label>
+                    <input type="tel" id="telefone-checkout" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo" required>
+                </div>
+                <div>
+                    <label for="endereco-checkout" class="block text-bordo mb-1">Endereço de Entrega</label>
+                    <input type="text" id="endereco-checkout" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo" required>
+                </div>
+                <div>
+                    <label for="forma-pagamento" class="block text-bordo mb-1">Forma de Pagamento</label>
+                    <select id="forma-pagamento" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo" required>
+                        <option value="">Selecione uma opção</option>
+                        <option value="dinheiro">Dinheiro</option>
+                        <option value="cartao">Cartão na entrega</option>
+                        <option value="pix">PIX</option>
+                    </select>
+                </div>
+                <div id="troco-container" class="hidden">
+                    <label for="troco-para" class="block text-bordo mb-1">Troco para</label>
+                    <input type="number" id="troco-para" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo" min="0" step="0.01">
+                </div>
+                <div>
+                    <label for="observacoes" class="block text-bordo mb-1">Observações (opcional)</label>
+                    <textarea id="observacoes" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-vermelho hover:bg-bordo text-white px-6 py-3 rounded-full transition-colors font-medium">
+                    Confirmar Pedido
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmação Modal -->
+    <div id="confirmation-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 text-center">
+            <div class="mb-4">
+                <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center">
+                    <i class="fas fa-check text-green-600 text-3xl"></i>
+                </div>
+            </div>
+            <h3 class="text-xl font-bold text-marrom mb-2">Pedido Confirmado!</h3>
+            <p class="text-gray-600 mb-6">Seu pedido foi recebido e está sendo processado. Em breve entraremos em contato para confirmar.</p>
+            <button id="close-confirmation" class="w-full bg-vermelho hover:bg-bordo text-white px-6 py-3 rounded-full transition-colors font-medium">
+                Fechar
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="admin-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-marrom">Painel Administrativo</h3>
+                <button id="close-admin" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="login-form" class="space-y-4">
+                <div>
+                    <label for="username" class="block text-bordo mb-1">Usuário</label>
+                    <input type="text" id="username" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo">
+                </div>
+                <div>
+                    <label for="password" class="block text-bordo mb-1">Senha</label>
+                    <input type="password" id="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo">
+                </div>
+                <button id="login-btn" class="w-full bg-vermelho hover:bg-bordo text-white px-4 py-2 rounded-md transition-colors">
+                    Entrar
+                </button>
+            </div>
+            
+            <div id="admin-panel" class="admin-panel space-y-6">
+                <div class="flex justify-between items-center">
+                    <h4 class="text-lg font-bold text-marrom">Gerenciar Cardápio</h4>
+                    <button id="add-item-btn" class="bg-caramelo hover:bg-vermelho text-white px-3 py-1 rounded-md text-sm">
+                        <i class="fas fa-plus mr-1"></i> Novo Item
+                    </button>
+                </div>
+                
+                <div id="item-form" class="hidden space-y-4 border-t border-b border-gray-200 py-4">
+                    <h5 class="font-bold text-bordo" id="form-title">Adicionar Item</h5>
+                    <input type="hidden" id="item-id">
+                    <div>
+                        <label for="item-nome" class="block text-bordo mb-1">Nome</label>
+                        <input type="text" id="item-nome" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo">
+                    </div>
+                    <div>
+                        <label for="item-descricao" class="block text-bordo mb-1">Descrição</label>
+                        <textarea id="item-descricao" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo"></textarea>
+                    </div>
+                    <div>
+                        <label for="item-preco" class="block text-bordo mb-1">Preço (R$)</label>
+                        <input type="number" step="0.01" id="item-preco" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo">
+                    </div>
+                    <div>
+                        <label for="item-categoria" class="block text-bordo mb-1">Categoria</label>
+                        <select id="item-categoria" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-caramelo">
+                            <option value="feijoadas">Feijoadas</option>
+                            <option value="acompanhamentos">Acompanhamentos</option>
+                            <option value="bebidas">Bebidas</option>
+                            <option value="sobremesas">Sobremesas</option>
+                        </select>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button id="save-item" class="bg-vermelho hover:bg-bordo text-white px-4 py-2 rounded-md transition-colors">
+                            Salvar
+                        </button>
+                        <button id="cancel-item" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-md transition-colors">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="items-list" class="space-y-4">
+                    <!-- Os itens do cardápio serão listados aqui -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Dados iniciais do cardápio
+        let menuItems = [
+            {
+                id: 1,
+                nome: "Feijoada Completa",
+                descricao: "Feijoada tradicional com todas as carnes, acompanha arroz, couve, farofa, laranja e vinagrete.",
+                preco: 49.90,
+                categoria: "feijoadas"
+            },
+            {
+                id: 2,
+                nome: "Feijoada Light",
+                descricao: "Versão mais leve da nossa feijoada, com menos carnes e mais legumes.",
+                preco: 39.90,
+                categoria: "feijoadas"
+            },
+            {
+                id: 3,
+                nome: "Arroz Branco",
+                descricao: "Arroz branco soltinho, perfeito para acompanhar nossa feijoada.",
+                preco: 8.90,
+                categoria: "acompanhamentos"
+            },
+            {
+                id: 4,
+                nome: "Couve Refogada",
+                descricao: "Couve refogada no alho, tradicional acompanhamento para feijoada.",
+                preco: 9.90,
+                categoria: "acompanhamentos"
+            },
+            {
+                id: 5,
+                nome: "Farofa Especial",
+                descricao: "Farofa feita na casa com bacon, ovos e temperos especiais.",
+                preco: 10.90,
+                categoria: "acompanhamentos"
+            },
+            {
+                id: 6,
+                nome: "Caipirinha",
+                descricao: "Caipirinha tradicional de limão, perfeita para acompanhar a feijoada.",
+                preco: 15.90,
+                categoria: "bebidas"
+            },
+            {
+                id: 7,
+                nome: "Suco de Laranja",
+                descricao: "Suco de laranja natural, feito na hora.",
+                preco: 9.90,
+                categoria: "bebidas"
+            },
+            {
+                id: 8,
+                nome: "Pudim de Leite",
+                descricao: "Pudim de leite condensado tradicional, com calda de caramelo.",
+                preco: 12.90,
+                categoria: "sobremesas"
+            }
+        ];
+
+        // Carrinho de compras
+        let cart = [];
+        const deliveryFee = 5.00;
+
+        // Função para salvar os dados no localStorage
+        function saveData() {
+            localStorage.setItem('menuItems', JSON.stringify(menuItems));
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Função para carregar os dados do localStorage
+        function loadData() {
+            const savedItems = localStorage.getItem('menuItems');
+            if (savedItems) {
+                menuItems = JSON.parse(savedItems);
+            }
+            
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartBadge();
+                updateCartTotal();
+            }
+        }
+
+        // Função para exibir os itens do cardápio
+        function displayMenuItems(categoria = 'todos') {
+            const menuContainer = document.getElementById('menu-items');
+            menuContainer.innerHTML = '';
+            
+            const filteredItems = categoria === 'todos' 
+                ? menuItems 
+                : menuItems.filter(item => item.categoria === categoria);
+            
+            filteredItems.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'menu-item bg-white rounded-lg shadow-md overflow-hidden';
+                
+                itemElement.innerHTML = `
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-serif font-bold text-marrom">${item.nome}</h3>
+                            <span class="bg-caramelo text-white px-3 py-1 rounded-full text-sm font-bold">R$ ${item.preco.toFixed(2)}</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">${item.descricao}</p>
+                        <button class="add-to-cart bg-vermelho hover:bg-bordo text-white px-4 py-2 rounded-full transition-colors text-sm" data-id="${item.id}">
+                            <i class="fas fa-shopping-cart mr-1"></i> Adicionar ao Carrinho
+                        </button>
+                    </div>
+                `;
+                
+                menuContainer.appendChild(itemElement);
+            });
+            
+            // Adicionar eventos aos botões de adicionar ao carrinho
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemId = this.getAttribute('data-id');
+                    addToCart(itemId);
+                });
+            });
+        }
+
+        // Função para adicionar item ao carrinho
+        function addToCart(itemId) {
+            const item = menuItems.find(i => i.id == itemId);
+            if (!item) return;
+            
+            // Verificar se o item já está no carrinho
+            const existingItem = cart.find(i => i.id == itemId);
+            
+            if (existingItem) {
+                existingItem.quantidade += 1;
+            } else {
+                cart.push({
+                    id: item.id,
+                    nome: item.nome,
+                    preco: item.preco,
+                    quantidade: 1
+                });
+            }
+            
+            saveData();
+            updateCartBadge();
+            showNotification(`${item.nome} adicionado ao carrinho!`);
+        }
+
+        // Função para atualizar o badge do carrinho
+        function updateCartBadge() {
+            const totalItems = cart.reduce((total, item) => total + item.quantidade, 0);
+            document.getElementById('cart-badge').textContent = totalItems;
+            document.getElementById('cart-badge-mobile').textContent = totalItems;
+            
+            // Habilitar/desabilitar botão de checkout
+            const checkoutBtn = document.getElementById('checkout-btn');
+            if (totalItems > 0) {
+                checkoutBtn.disabled = false;
+            } else {
+                checkoutBtn.disabled = true;
+            }
+        }
+
+        // Função para exibir os itens do carrinho
+        function displayCartItems() {
+            const cartContainer = document.getElementById('cart-items');
+            const emptyMessage = document.getElementById('empty-cart-message');
+            
+            // Limpar o container
+            cartContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartContainer.appendChild(emptyMessage);
+                return;
+            } else {
+                emptyMessage.remove();
+            }
+            
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'flex justify-between items-center bg-gray-50 p-3 rounded-md';
+                cartItem.setAttribute('data-id', item.id);
+                
+                cartItem.innerHTML = `
+                    <div class="flex-1">
+                        <h4 class="font-medium text-marrom">${item.nome}</h4>
+                        <p class="text-sm text-gray-600">R$ ${item.preco.toFixed(2)}</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button class="decrease-quantity w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors">
+                            <i class="fas fa-minus text-xs"></i>
+                        </button>
+                        <span class="item-quantity w-6 text-center">${item.quantidade}</span>
+                        <button class="increase-quantity w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors">
+                            <i class="fas fa-plus text-xs"></i>
+                        </button>
+                        <button class="remove-item ml-2 text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                
+                cartContainer.appendChild(cartItem);
+            });
+            
+            // Adicionar eventos aos botões
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemId = this.closest('[data-id]').getAttribute('data-id');
+                    decreaseQuantity(itemId);
+                });
+            });
+            
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemId = this.closest('[data-id]').getAttribute('data-id');
+                    increaseQuantity(itemId);
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemId = this.closest('[data-id]').getAttribute('data-id');
+                    removeFromCart(itemId);
+                });
+            });
+            
+            updateCartTotal();
+        }
+
+        // Função para diminuir a quantidade de um item
+        function decreaseQuantity(itemId) {
+            const item = cart.find(i => i.id == itemId);
+            if (!item) return;
+            
+            if (item.quantidade > 1) {
+                item.quantidade -= 1;
+                document.querySelector(`[data-id="${itemId}"] .item-quantity`).textContent = item.quantidade;
+            } else {
+                removeFromCart(itemId);
+            }
+            
+            saveData();
+            updateCartBadge();
+            updateCartTotal();
+        }
+
+        // Função para aumentar a quantidade de um item
+        function increaseQuantity(itemId) {
+            const item = cart.find(i => i.id == itemId);
+            if (!item) return;
+            
+            item.quantidade += 1;
+            document.querySelector(`[data-id="${itemId}"] .item-quantity`).textContent = item.quantidade;
+            
+            saveData();
+            updateCartBadge();
+            updateCartTotal();
+        }
+
+        // Função para remover um item do carrinho
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => item.id != itemId);
+            
+            const itemElement = document.querySelector(`[data-id="${itemId}"]`);
+            if (itemElement) {
+                itemElement.classList.add('cart-item-exit');
+                setTimeout(() => {
+                    itemElement.remove();
+                    
+                    // Verificar se o carrinho está vazio
+                    if (cart.length === 0) {
+                        const emptyMessage = document.getElementById('empty-cart-message');
+                        document.getElementById('cart-items').appendChild(emptyMessage);
+                    }
+                }, 300);
+            }
+            
+            saveData();
+            updateCartBadge();
+            updateCartTotal();
+        }
+
+        // Função para atualizar o total do carrinho
+        function updateCartTotal() {
+            const subtotal = cart.reduce((total, item) => total + (item.preco * item.quantidade), 0);
+            const total = subtotal + deliveryFee;
+            
+            document.getElementById('cart-subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
+            document.getElementById('cart-total').textContent = `R$ ${total.toFixed(2)}`;
+            
+            // Atualizar também no checkout
+            document.getElementById('checkout-subtotal').textContent = `R$ ${subtotal.toFixed(2)}`;
+            document.getElementById('checkout-total').textContent = `R$ ${total.toFixed(2)}`;
+        }
+
+        // Função para exibir os itens no checkout
+        function displayCheckoutItems() {
+            const checkoutContainer = document.getElementById('checkout-items');
+            checkoutContainer.innerHTML = '';
+            
+            cart.forEach(item => {
+                const checkoutItem = document.createElement('div');
+                checkoutItem.className = 'flex justify-between items-center mb-2';
+                
+                checkoutItem.innerHTML = `
+                    <div>
+                        <span class="font-medium">${item.nome}</span>
+                        <span class="text-gray-600 text-sm"> x${item.quantidade}</span>
+                    </div>
+                    <span>R$ ${(item.preco * item.quantidade).toFixed(2)}</span>
+                `;
+                
+                checkoutContainer.appendChild(checkoutItem);
+            });
+        }
+
+        // Função para mostrar notificação
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-4 right-4 bg-caramelo text-white px-4 py-2 rounded-md shadow-lg z-50 transition-opacity duration-300';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Função para exibir os itens no painel admin
+        function displayAdminItems() {
+            const itemsList = document.getElementById('items-list');
+            itemsList.innerHTML = '';
+            
+            menuItems.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'bg-gray-50 p-4 rounded-md';
+                
+                itemElement.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h5 class="font-bold text-marrom">${item.nome}</h5>
+                            <p class="text-sm text-gray-600">${item.descricao}</p>
+                            <div class="flex space-x-2 mt-1">
+                                <span class="text-sm text-bordo">R$ ${item.preco.toFixed(2)}</span>
+                                <span class="text-sm bg-caramelo bg-opacity-20 text-caramelo px-2 py-0.5 rounded-full">${item.categoria}</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="edit-item text-caramelo hover:text-vermelho" data-id="${item.id}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="delete-item text-bordo hover:text-vermelho" data-id="${item.id}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                itemsList.appendChild(itemElement);
+            });
+            
+            // Adicionar eventos aos botões de editar e excluir
+            document.querySelectorAll('.edit-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemId = this.getAttribute('data-id');
+                    editItem(itemId);
+                });
+            });
+            
+            document.querySelectorAll('.delete-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemId = this.getAttribute('data-id');
+                    deleteItem(itemId);
+                });
+            });
+        }
+
+        // Função para editar um item
+        function editItem(id) {
+            const item = menuItems.find(i => i.id == id);
+            if (!item) return;
+            
+            document.getElementById('form-title').textContent = 'Editar Item';
+            document.getElementById('item-id').value = item.id;
+            document.getElementById('item-nome').value = item.nome;
+            document.getElementById('item-descricao').value = item.descricao;
+            document.getElementById('item-preco').value = item.preco;
+            document.getElementById('item-categoria').value = item.categoria;
+            
+            document.getElementById('item-form').classList.remove('hidden');
+        }
+
+        // Função para excluir um item
+        function deleteItem(id) {
+            if (confirm('Tem certeza que deseja excluir este item?')) {
+                menuItems = menuItems.filter(item => item.id != id);
+                saveData();
+                displayAdminItems();
+                displayMenuItems();
+            }
+        }
+
+        // Função para salvar um item (novo ou editado)
+        function saveItem() {
+            const id = document.getElementById('item-id').value;
+            const nome = document.getElementById('item-nome').value;
+            const descricao = document.getElementById('item-descricao').value;
+            const preco = parseFloat(document.getElementById('item-preco').value);
+            const categoria = document.getElementById('item-categoria').value;
+            
+            if (!nome || !descricao || isNaN(preco) || preco <= 0) {
+                alert('Por favor, preencha todos os campos corretamente.');
+                return;
+            }
+            
+            if (id) {
+                // Editar item existente
+                const index = menuItems.findIndex(item => item.id == id);
+                if (index !== -1) {
+                    menuItems[index] = { id: parseInt(id), nome, descricao, preco, categoria };
+                }
+            } else {
+                // Adicionar novo item
+                const newId = menuItems.length > 0 ? Math.max(...menuItems.map(item => item.id)) + 1 : 1;
+                menuItems.push({ id: newId, nome, descricao, preco, categoria });
+            }
+            
+            saveData();
+            displayAdminItems();
+            displayMenuItems();
+            resetItemForm();
+        }
+
+        // Função para resetar o formulário de item
+        function resetItemForm() {
+            document.getElementById('form-title').textContent = 'Adicionar Item';
+            document.getElementById('item-id').value = '';
+            document.getElementById('item-nome').value = '';
+            document.getElementById('item-descricao').value = '';
+            document.getElementById('item-preco').value = '';
+            document.getElementById('item-categoria').value = 'feijoadas';
+            document.getElementById('item-form').classList.add('hidden');
+        }
+
+        // Função para limpar o carrinho
+        function clearCart() {
+            cart = [];
+            saveData();
+            updateCartBadge();
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carregar dados
+            loadData();
+            
+            // Exibir itens do cardápio
+            displayMenuItems();
+            
+            // Botões de categoria
+            document.querySelectorAll('.categoria-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.categoria-btn').forEach(btn => {
+                        btn.classList.remove('bg-marrom');
+                        btn.classList.add('bg-bordo');
+                    });
+                    this.classList.remove('bg-bordo');
+                    this.classList.add('bg-marrom');
+                    
+                    const categoria = this.getAttribute('data-categoria');
+                    displayMenuItems(categoria);
+                });
+            });
+            
+            // Menu mobile
+            document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobile-menu');
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Carrinho
+            document.getElementById('cart-btn').addEventListener('click', function() {
+                document.getElementById('cart-modal').classList.remove('hidden');
+                displayCartItems();
+            });
+            
+            document.getElementById('cart-btn-mobile').addEventListener('click', function() {
+                document.getElementById('cart-modal').classList.remove('hidden');
+                displayCartItems();
+            });
+            
+            document.getElementById('close-cart').addEventListener('click', function() {
+                document.getElementById('cart-modal').classList.add('hidden');
+            });
+            
+            document.getElementById('continue-shopping').addEventListener('click', function() {
+                document.getElementById('cart-modal').classList.add('hidden');
+            });
+            
+            document.getElementById('checkout-btn').addEventListener('click', function() {
+                document.getElementById('cart-modal').classList.add('hidden');
+                document.getElementById('checkout-modal').classList.remove('hidden');
+                displayCheckoutItems();
+            });
+            
+            document.getElementById('fazer-pedido-btn').addEventListener('click', function() {
+                document.getElementById('cart-modal').classList.remove('hidden');
+                displayCartItems();
+            });
+            
+            // Checkout
+            document.getElementById('close-checkout').addEventListener('click', function() {
+                document.getElementById('checkout-modal').classList.add('hidden');
+            });
+            
+            // Forma de pagamento
+            document.getElementById('forma-pagamento').addEventListener('change', function() {
+                const trocoContainer = document.getElementById('troco-container');
+                if (this.value === 'dinheiro') {
+                    trocoContainer.classList.remove('hidden');
+                } else {
+                    trocoContainer.classList.add('hidden');
+                }
+            });
+            
+            // Formulário de checkout
+            document.getElementById('checkout-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Em um sistema real, aqui enviaria o pedido para um servidor
+                document.getElementById('checkout-modal').classList.add('hidden');
+                document.getElementById('confirmation-modal').classList.remove('hidden');
+                
+                // Limpar o carrinho após o pedido
+                clearCart();
+            });
+            
+            // Confirmação
+            document.getElementById('close-confirmation').addEventListener('click', function() {
+                document.getElementById('confirmation-modal').classList.add('hidden');
+            });
+            
+            // Admin modal
+            document.getElementById('admin-btn').addEventListener('click', function() {
+                document.getElementById('admin-modal').classList.remove('hidden');
+            });
+            
+            document.getElementById('admin-btn-mobile').addEventListener('click', function() {
+                document.getElementById('admin-modal').classList.remove('hidden');
+            });
+            
+            document.getElementById('close-admin').addEventListener('click', function() {
+                document.getElementById('admin-modal').classList.add('hidden');
+            });
+            
+            // Login
+            document.getElementById('login-btn').addEventListener('click', function() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                // Credenciais simples para demonstração (em produção, use autenticação segura)
+                if (username === 'admin' && password === 'admin') {
+                    document.getElementById('login-form').style.display = 'none';
+                    document.getElementById('admin-panel').style.display = 'block';
+                    displayAdminItems();
+                } else {
+                    alert('Usuário ou senha incorretos!');
+                }
+            });
+            
+            // Formulário de item
+            document.getElementById('add-item-btn').addEventListener('click', function() {
+                resetItemForm();
+                document.getElementById('item-form').classList.remove('hidden');
+            });
+            
+            document.getElementById('save-item').addEventListener('click', saveItem);
+            
+            document.getElementById('cancel-item').addEventListener('click', resetItemForm);
+            
+            // Formulário de contato
+            document.getElementById('contato-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Em um sistema real, aqui enviaria a mensagem para um servidor
+                alert('Mensagem enviada com sucesso! Em breve entraremos em contato.');
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>

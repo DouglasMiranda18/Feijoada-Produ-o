@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manu Maria | Social Media</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D4AF37',
+                        secondary: '#BFA030',
+                        accent: '#FFD700',
+                        light: '#F5F5F5',
+                        dark: '#121212',
+                        darkgray: '#1E1E1E'
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #121212;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #121212 0%, #2C2C2C 100%);
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+        }
+        
+        .photo-placeholder {
+            background-color: #2C2C2C;
+            border: 2px dashed #D4AF37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D4AF37;
+            font-size: 1rem;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%231E1E1E' fill-opacity='1' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        .gold-text {
+            color: #D4AF37;
+        }
+        
+        .gold-border {
+            border-color: #D4AF37;
+        }
+        
+        .gold-shadow {
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-dark min-h-screen text-white">
+    <!-- Navbar -->
+    <nav class="gradient-bg py-4 px-6 md:px-12 border-b border-primary">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold gold-text">Manu Maria</div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#sobre" class="hover:text-primary transition">Sobre</a>
+                <a href="#servicos" class="hover:text-primary transition">Serviços</a>
+                <a href="#resultados" class="hover:text-primary transition">Resultados</a>
+                <a href="#contato" class="hover:text-primary transition">Contato</a>
+            </div>
+            <div class="md:hidden">
+                <button class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative py-16 md:py-24 overflow-hidden">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row items-center">
+                <!-- Left Content -->
+                <div class="md:w-1/2 mb-12 md:mb-0 z-10">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">
+                        Transforme sua <span class="gold-text">presença digital</span> em resultados reais
+                    </h1>
+                    <p class="text-lg md:text-xl mb-8 text-gray-300">
+                        Estratégias personalizadas de social media que convertem seguidores em clientes e impulsionam seu negócio.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://wa.me/5500000000000?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento" target="_blank" class="pulse bg-primary hover:bg-secondary text-dark font-bold py-3 px-8 rounded-full inline-flex items-center justify-center transition-all">
+                            <i class="fab fa-whatsapp mr-2 text-xl"></i>
+                            Solicitar orçamento
+                        </a>
+                        <a href="#servicos" class="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-dark font-bold py-3 px-8 rounded-full inline-flex items-center justify-center transition-all">
+                            Conhecer serviços
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Right Content - Photo Placeholder -->
+                <div class="md:w-1/2 flex justify-center z-10">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary shadow-xl">
+                            <!-- Placeholder for professional photo -->
+                            <div class="photo-placeholder w-full h-full flex items-center justify-center">
+                                <p class="text-center px-4">Sua foto profissional aqui</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Decorative elements -->
+                        <div class="absolute -top-4 -right-4 w-12 h-12 rounded-full gold-gradient floating delay-100"></div>
+                        <div class="absolute -bottom-6 -left-6 w-16 h-16 rounded-full bg-secondary floating delay-300"></div>
+                        <div class="absolute top-1/2 -right-8 w-8 h-8 rounded-full bg-accent floating delay-500"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decorative wave -->
+        <div class="wave"></div>
+        
+        <!-- Floating social icons -->
+        <div class="hidden md:block absolute top-1/4 left-4 space-y-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-darkgray border border-primary shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-dark transition-all">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-darkgray border border-primary shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-dark transition-all">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-darkgray border border-primary shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-dark transition-all">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-16 bg-darkgray">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 gold-text">Serviços Especializados</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">Estratégias personalizadas para cada fase do seu negócio</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-dark rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-primary gold-shadow">
+                    <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 gold-text">Gestão de Redes Sociais</h3>
+                    <p class="text-gray-300 mb-4">Criação de conteúdo, planejamento estratégico e gerenciamento completo das suas redes sociais.</p>
+                    <a href="#" class="text-primary font-semibold inline-flex items-center">
+                        Saiba mais
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-dark rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-primary gold-shadow">
+                    <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 gold-text">Estratégia de Conteúdo</h3>
+                    <p class="text-gray-300 mb-4">Desenvolvimento de conteúdo que engaja, educa e converte seu público-alvo em clientes fiéis.</p>
+                    <a href="#" class="text-primary font-semibold inline-flex items-center">
+                        Saiba mais
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-dark rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-primary gold-shadow">
+                    <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 gold-text">Campanhas de Conversão</h3>
+                    <p class="text-gray-300 mb-4">Estratégias focadas em transformar seguidores em leads qualificados e clientes pagantes.</p>
+                    <a href="#" class="text-primary font-semibold inline-flex items-center">
+                        Saiba mais
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="resultados" class="py-16 bg-dark">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 gold-text">Resultados Comprovados</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">Conheça alguns dos resultados que já alcançamos para nossos clientes</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Result 1 -->
+                <div class="bg-darkgray rounded-xl p-8 shadow-lg text-center border border-primary gold-shadow">
+                    <div class="text-4xl font-bold text-primary mb-2">+300%</div>
+                    <p class="text-gray-300">Aumento de engajamento</p>
+                </div>
+                
+                <!-- Result 2 -->
+                <div class="bg-darkgray rounded-xl p-8 shadow-lg text-center border border-primary gold-shadow">
+                    <div class="text-4xl font-bold text-primary mb-2">+150%</div>
+                    <p class="text-gray-300">Crescimento de seguidores</p>
+                </div>
+                
+                <!-- Result 3 -->
+                <div class="bg-darkgray rounded-xl p-8 shadow-lg text-center border border-primary gold-shadow">
+                    <div class="text-4xl font-bold text-primary mb-2">+200%</div>
+                    <p class="text-gray-300">Aumento em vendas</p>
+                </div>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-center mb-8 gold-text">O que dizem nossos clientes</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-darkgray p-6 rounded-xl shadow-lg border border-primary gold-shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-dark border border-primary flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold gold-text">Ana Silva</h4>
+                                <p class="text-sm text-gray-400">Loja de Roupas Online</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">"Desde que começamos a trabalhar com a Manu, nossas vendas online aumentaram em 200%. A estratégia de conteúdo transformou completamente nossa presença digital!"</p>
+                        <div class="mt-4 flex text-primary">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="bg-darkgray p-6 rounded-xl shadow-lg border border-primary gold-shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-dark border border-primary flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold gold-text">Carlos Mendes</h4>
+                                <p class="text-sm text-gray-400">Clínica de Estética</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">"A Manu entendeu perfeitamente o posicionamento da nossa marca e criou uma estratégia que nos ajudou a conquistar o público certo. Nosso agendamento está sempre lotado!"</p>
+                        <div class="mt-4 flex text-primary">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contato" class="py-16 gradient-bg text-white border-t border-b border-primary">
+        <div class="container mx-auto px-6 md:px-12 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 gold-text">Pronto para transformar sua presença digital?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto text-gray-300">Entre em contato agora mesmo e solicite um orçamento personalizado para o seu negócio.</p>
+            
+            <a href="https://wa.me/5500000000000?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento" target="_blank" class="pulse bg-primary text-dark hover:bg-secondary font-bold py-4 px-10 rounded-full inline-flex items-center justify-center transition-all text-lg">
+                <i class="fab fa-whatsapp mr-2 text-xl"></i>
+                Solicitar orçamento via WhatsApp
+            </a>
+            
+            <div class="mt-12 flex justify-center space-x-6">
+                <a href="#" class="text-primary hover:text-secondary transition">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                <a href="#" class="text-primary hover:text-secondary transition">
+                    <i class="fab fa-facebook-f text-2xl"></i>
+                </a>
+                <a href="#" class="text-primary hover:text-secondary transition">
+                    <i class="fab fa-linkedin-in text-2xl"></i>
+                </a>
+                <a href="#" class="text-primary hover:text-secondary transition">
+                    <i class="fab fa-tiktok text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-2 gold-text">Manu Maria</h3>
+                    <p class="text-gray-400">Especialista em Social Media</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row md:space-x-8 text-center md:text-left">
+                    <div class="mb-4 md:mb-0">
+                        <h4 class="text-lg font-semibold mb-2 gold-text">Links Rápidos</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-primary transition">Início</a></li>
+                            <li><a href="#servicos" class="text-gray-400 hover:text-primary transition">Serviços</a></li>
+                            <li><a href="#resultados" class="text-gray-400 hover:text-primary transition">Resultados</a></li>
+                            <li><a href="#contato" class="text-gray-400 hover:text-primary transition">Contato</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-2 gold-text">Contato</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center justify-center md:justify-start">
+                                <i class="fab fa-whatsapp mr-2 text-primary"></i>
+                                <a href="https://wa.me/5500000000000" class="text-gray-400 hover:text-primary transition">(00) 00000-0000</a>
+                            </li>
+                            <li class="flex items-center justify-center md:justify-start">
+                                <i class="far fa-envelope mr-2 text-primary"></i>
+                                <a href="mailto:contato@manumaria.com" class="text-gray-400 hover:text-primary transition">contato@manumaria.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500 text-sm">
+                <p>&copy; 2023 Manu Maria. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
